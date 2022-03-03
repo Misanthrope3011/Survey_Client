@@ -1,0 +1,24 @@
+<form class = "surveyForm" (submit) = "generateQuiz()" [formGroup]="survey">
+
+<select class="form-select" aria-label="Default select example" formControlName="size">
+    <option selected>Wybierz ilosc pytan</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+  </select>
+
+  <select class="form-select" aria-label="Default select example" formControlName="category">
+    <option selected>Wybierz kategorie</option>
+    <option value="SPORT">Sport</option>
+    <option value="POLITYKA">Polityka</option>
+    <option value="ROZRYWKA">Rozrywka</option>
+    <option value="INNE">Inne</option>
+  </select>
+
+</form>
+
+<button type="button" class="btn btn-secondary" (click) = "generateQuiz()">Secondary</button>
+
+<router-outlet></router-outlet>
+

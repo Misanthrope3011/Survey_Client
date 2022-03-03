@@ -1,0 +1,57 @@
+
+<div class = "container">
+<h3>Add a title</h3>
+ <form [formGroup]="questionAttributes" enctype="multipart/form-data" (click) = "addQuestion()">
+    
+    <div class="form-group">
+      <label for="questionContent">Tresc pytania</label>
+      <input type="text" class="form-control" id="questionContent" aria-describedby="emailHelp" 
+      placeholder="Type question content" formControlName = "questionContent">
+    </div>
+    
+    <div class="form-group">
+        <label for="optionA">Odpowiedź Pierwsza</label>
+        <input type="text" class="form-control" id="answerA" aria-describedby="emailHelp" placeholder="optionA"
+        formControlName = "optionA">
+      </div>
+      
+      <div class="form-group">
+        <label for="answerB">Odpowiedź Druga</label>
+        <input type="text" class="form-control" id="answerB" aria-describedby="emailHelp" placeholder="Type second answer"
+        formControlName = "optionB">
+      </div>
+      
+      <div class="form-group">
+        <label for="answerC">Odpowiedź Trzecia</label>
+        <input type="text" class="form-control" id="answerC" aria-describedby="emailHelp" placeholder="Type third answer"
+         formControlName = "optionC">
+
+      </div>
+        <div class="form-group">
+        <label for="answerD">Odpowiedź Czwarta</label>
+        <input type="text" class="form-control" id="answerD" aria-describedby="emailHelp" placeholder="type fourth answer"
+         formControlName = "optionD">
+      </div>
+
+      <div class="form-group">
+        <div class="mb-3">
+            <label for="formFile" class="form-label" placeholder = "choose image to question">Default file input example</label>
+            <input class="form-control" type="file" id="formFile" formControlName = "image">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="correctAnswer">Select correct answers</label>
+        <select multiple class="form-control" id="correctAnswer" formControlName = "correctAnswer">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
+      </div>
+
+    <button class="btn btn-primary" type="submit" id = "next">Następne pytanie</button>
+  </form>
+
+
+</div>

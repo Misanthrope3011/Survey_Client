@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import {FetchSurveyDataService} from '../../services/fetch-survey-data.service';
 
@@ -12,6 +12,9 @@ export class QuestionsDatabaseComponent implements OnInit {
 
   constructor(private fetchData: FetchSurveyDataService, private builder: FormBuilder) { }
 
+
+  categories: any;
+
   questionAttributes = new FormGroup({
     questionContent: new FormControl(),
     optionA: new FormControl(),
@@ -19,30 +22,36 @@ export class QuestionsDatabaseComponent implements OnInit {
     optionC: new FormControl(),
     optionD: new FormControl(),
     correctAnswer: new FormControl(),
-    image: new FormControl()
+    image: new FormControl(),
+    answerTimeSec: new FormControl(),
+    category: new FormControl()
   });
  
   ngOnInit(): void {
-  
+
+    this.categories = this.fetchData.surveyCategories;
+    console.log(this.categories);
     this.questionAttributes = this.builder.group({
-      questionContent: ['initalValue'],
-      optionA: [''],
-      optionB: [''],
-      optionC: [''],
-      optionD: [''],
+      question: ['pytanie'],
+      answerA: [''],
+      answerB: [''],
+      answerC: [''],
+      answerD: [''],
       correctAnswer: [''],
-      image: [''],
+      image: [],
+      answerTimeSec: [20],
+      categoryParser: []
     });
   
   }
 
+  getImage($event) {
+  }
+
   addQuestion() {
-    console.log(this.questionAttributes.getRawValue());
-    this.questionAttributes.controls['questionContent'].setValue(this.questionAttributes.controls['questionContent'].value.toString()); 
+    this.questionAttributes.controls['correctAnswer'].setValue(this.questionAttributes.controls['correctAnswer'].value.toString()); 
     this.fetchData.submitNewQuestion(this.questionAttributes.getRawValue())
                                   .subscribe(err => console.log(err))
   }
-
-
 
 }

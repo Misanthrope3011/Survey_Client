@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FetchSurveyDataService} from './services/fetch-survey-data.service';
 import {FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import {Router} from '@angular/router';
+import { QuizLogic } from './QuizLogic';
 
 @Component({
   selector: 'app-root',
@@ -11,22 +12,31 @@ import {Router} from '@angular/router';
 export class AppComponent implements OnInit, OnDestroy{
 
     title = 'SurveyClient';
+    getSurveyData: any;
 
-    constructor(private surveyData: FetchSurveyDataService, private builder: FormBuilder, private router: Router) {
-
+    constructor(public surveyData: FetchSurveyDataService, private builder: FormBuilder, private router: Router) {
     }
 
     survey = this.builder.group({
       size: ('10'),
-      category: ('Inne'),
+      category: ('INNE')
     });
 
     ngOnInit() {
+      
+    
+      this.surveyData.getAllCategories()
+                        .subscribe(data => {
+                          this.getSurveyData = data;
+                          this.surveyData.surveyCategories = data;
+                        })
+
     }
 
     ngOnDestroy() {
 
     }
+
 
     generateQuiz() {
       console.log(this.survey.getRawValue())
@@ -36,4 +46,5 @@ export class AppComponent implements OnInit, OnDestroy{
                                       this.router.navigateByUrl("/quiz");
                                     })
     }
+
 }

@@ -1,44 +1,59 @@
 
 <div class = "container">
 <h3>Add a title</h3>
- <form [formGroup]="questionAttributes" enctype="multipart/form-data" (click) = "addQuestion()">
-    
+ <form [formGroup]="questionAttributes" enctype="multipart/form-data" (submit) = "addQuestion()">
     <div class="form-group">
       <label for="questionContent">Tresc pytania</label>
       <input type="text" class="form-control" id="questionContent" aria-describedby="emailHelp" 
-      placeholder="Type question content" formControlName = "questionContent">
+      placeholder="Type question content" formControlName = "question">
     </div>
     
     <div class="form-group">
         <label for="optionA">Odpowiedź Pierwsza</label>
         <input type="text" class="form-control" id="answerA" aria-describedby="emailHelp" placeholder="optionA"
-        formControlName = "optionA">
+        formControlName = "answerA">
       </div>
       
       <div class="form-group">
         <label for="answerB">Odpowiedź Druga</label>
         <input type="text" class="form-control" id="answerB" aria-describedby="emailHelp" placeholder="Type second answer"
-        formControlName = "optionB">
+        formControlName = "answerB">
       </div>
       
       <div class="form-group">
         <label for="answerC">Odpowiedź Trzecia</label>
         <input type="text" class="form-control" id="answerC" aria-describedby="emailHelp" placeholder="Type third answer"
-         formControlName = "optionC">
+         formControlName = "answerC">
 
       </div>
         <div class="form-group">
         <label for="answerD">Odpowiedź Czwarta</label>
         <input type="text" class="form-control" id="answerD" aria-describedby="emailHelp" placeholder="type fourth answer"
-         formControlName = "optionD">
+         formControlName = "answerD">
       </div>
 
       <div class="form-group">
         <div class="mb-3">
             <label for="formFile" class="form-label" placeholder = "choose image to question">Default file input example</label>
-            <input class="form-control" type="file" id="formFile" formControlName = "image">
+            <input class="form-control" type="file" id="formFile" formControlName = "image"  (change) = getImage($event)>
         </div>
       </div>
+
+      
+
+      <div class="form-group">
+        <label for="customRange1" class="form-label">Example range</label>
+        <input type="range" class="form-range" id="customRange1" min = 20 max = 100 formControlName="answerTimeSec">
+      </div>
+
+      <div>
+        <select class="form-select" aria-label="Default select example" formControlName = "categoryParser">
+          <ng-container *ngFor = "let category of categories; let i = index">
+               <option [selected] = "i == 0"  value = {{category.name}}>{{category.name}}</option>
+          </ng-container>
+        </select>
+      </div>
+      
 
       <div class="form-group">
         <label for="correctAnswer">Select correct answers</label>
@@ -50,7 +65,7 @@
         </select>
       </div>
 
-    <button class="btn btn-primary" type="submit" id = "next">Następne pytanie</button>
+    <button class="btn btn-primary" type="submit" id = "next">Dodaj pytanie</button>
   </form>
 
 

@@ -1,24 +1,22 @@
 <form class = "surveyForm" (submit) = "generateQuiz()" [formGroup]="survey">
 
-<select class="form-select" aria-label="Default select example" formControlName="size">
-    <option selected>Wybierz ilosc pytan</option>
-    <option value="5">5</option>
-    <option value="10">10</option>
-    <option value="15">15</option>
-    <option value="20">20</option>
+  <select class="form-select" aria-label="Default select example" formControlName="size">
+      <option selected>Wybierz ilosc pytan</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
   </select>
 
-  <select class="form-select" aria-label="Default select example" formControlName="category">
-    <option selected>Wybierz kategorie</option>
-    <option value="SPORT">Sport</option>
-    <option value="POLITYKA">Polityka</option>
-    <option value="ROZRYWKA">Rozrywka</option>
-    <option value="INNE">Inne</option>
-  </select>
+    <select class="form-select" aria-label="Default select example" formControlName = "category">
+        <ng-container *ngFor = "let category of getSurveyData; let i = index">
+             <option [selected] = "i == 0"  value = {{category.name}}>{{category.name}}</option>
+        </ng-container>
+    </select>    
 
+    <button type="button" class="btn btn-secondary" (click) = "generateQuiz()">GenerujQuiz</button>
 </form>
 
-<button type="button" class="btn btn-secondary" (click) = "generateQuiz()">Secondary</button>
+<a routerLink="/addQuestion"> <button type="button" class="btn btn-secondary"> Dodaj pytanie</button> </a>
 
-<router-outlet></router-outlet>
-
+<router-outlet></router-outlet> 

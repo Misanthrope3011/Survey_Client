@@ -10,11 +10,15 @@ export class FetchSurveyDataService {
 
   constructor(private http: HttpClient) { }
 
-  surveyConfig: any;
+  private surveyConfig: any;
   surveyCategories: any;
 
-  setSurveyConfig(formGroup: FormGroup) {
 
+  fetchSingleQuestion(id: number) {
+    return this.http.get("http://localhost:8080/quiz/" + id);              
+  }
+
+  setSurveyConfig(formGroup: FormGroup) {
     return this.http.post("http://localhost:8080/generateSurvey", formGroup);                
   }
 
@@ -25,5 +29,13 @@ export class FetchSurveyDataService {
   getAllCategories() {
     return this.http.get("http://localhost:8080/getCategories");
   }
+
+  setterSurveyConfig(surveyConfig: any) {
+      this.surveyConfig = surveyConfig;
+  }
+
+  getSurveyConfig() {
+    return this.surveyConfig;
+}
   
 }

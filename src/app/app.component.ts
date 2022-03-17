@@ -42,8 +42,8 @@ export class AppComponent implements OnInit, OnDestroy{
       console.log(this.survey.getRawValue())
       this.surveyData.setSurveyConfig(this.survey.getRawValue())
                                     .subscribe(err => {
-                                      this.surveyData.surveyConfig = err;
-                                      this.router.navigateByUrl("/quiz");
+                                      this.surveyData.setterSurveyConfig(err);
+                                      this.router.navigateByUrl("/quiz/1");
                                     })
     }
 
